@@ -3,18 +3,18 @@
 {% load staticfiles %}
 {% load bootstrap3 %}
 
-{% block page-title %}Listado de Usuarios{% endblock %}
-{% block page-description %}Utilice las opciones para gestionar usuarios{% endblock %}
+{% block page-title %}Listado de Recursos{% endblock %}
+{% block page-description %}Utilice las opciones para gestionar recursos{% endblock %}
 
 {% block cabecera_tabla %}
     <thead>
     <tr>
         <td>#</td>
+        <td>Categoria</td>
+        <td>Codigo</td>
         <td>Nombre</td>
-        <td>Apellido</td>
-        <td>Email</td>
-        <td>Direccion</td>
-        <td>Telefono</td>
+        <td>Marca</td>
+        <td>Serie</td>
     </tr>
 
     </thead>
@@ -22,23 +22,23 @@
 {% block cuerpo_tabla %}
     <tbody>
     {% if object_list %}
-        {% for usuario in object_list %}
+        {% for recurso in object_list %}
             <tr>
-                <td>{{ usuario.id }}</td>
-                <td>{{ usuario.nombre }}</td>
-                <td>{{ usuario.password }}</td>
-                <td>{{ usuario.email }}</td>
-                <td>{{ usuario.direccion }}</td>
-                <td>{{ usuario.telefono }}</td>
+                <td>{{ recurso.id }}</td>
+                <td>{{ recurso.categoria }}</td>
+                <td>{{ recurso.codigo }}</td>
+                <td>{{ recurso.nombre }}</td>
+                <td>{{ recurso.marca }}</td>
+                <td>{{ recurso.serie}}</td>
                 <td>
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary">Opciones</button>
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
-                            <span class="sr-only">Opciones de gestión de usuarios</span>
+                            <span class="sr-only">Opciones de gestión de recursos</span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'gestion_usuarios:editar_usuario' usuario.id %}">Editar</a></li>
+                            <li><a href="{% url 'gestion_inventario:editar_recurso' recurso.id %}">Editar</a></li>
                         </ul>
                     </div>
                 </td>
@@ -47,11 +47,11 @@
         {% endfor %}
 
     {% else %}
-        <h1>No hay registros de Usuarios</h1>
+        <h1>No hay registros de Recursos</h1>
     {% endif %}
     </tbody>
 {% endblock cuerpo_tabla %}
 
 {% block new_button %}
-    <a href="{% url "gestion_usuarios:crear_usuario" %}" class="btn btn-success"><i class="fa  fa-plus-circle"></i>  Nuevo Usuario</a>
+    <a href="{% url "gestion_inventario:crear_recurso" %}" class="btn btn-success"><i class="fa  fa-plus-circle"></i>  Nuevo Recurso</a>
 {% endblock %}

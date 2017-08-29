@@ -9,79 +9,27 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-th-large"></i> <span>Gestión de Ingredientes</span>
+                    <a href="#"><i class="fa fa-th-large"></i> <span>Gestión de usuarios</span>
                         <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a >Registrar ingrediente</a></li>
-                        <li><a >Listar ingredientes</a></li>
+                        <li><a href="{% url "gestion_usuarios:crear_usuario" %}">Registrar usuario</a></li>
+                        <li><a href="{% url "gestion_usuarios:listar_usuario" %}">Listar usuario</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-circle-o"></i> <span>Gestión de Pizzas</span>
+                    <a href="#"><i class="fa fa-circle-o"></i> <span>Gestión de Recursos</span>
                         <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a>Registrar Pizzas</a></li>
-                        <li><a >Listar Pizzas</a></li>
-                    </ul>
-                </li>
-
-            <li class="treeview">
-                <a href="#"><i class="fa fa-shopping-cart"></i> <span>Gestión de Pedidos</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a>Registrar Pedido</a></li>
-                    {% if user.is_authenticated %}
-                        <li><a>Listar Pedidos</a></li>
-                    {% endif %}
-                </ul>
-            </li>
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-user"></i> <span>Gestión de Usuarios</span>
-                        <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a >Registrar Cliente</a></li>
-                        <li><a>Registrar Digitador</a></li>
-                        <li><a>Registrar Administrador</a></li>
-                        <li><a>Listar Usuarios</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-pie-chart"></i> <span>Reportes</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a>Reportes de texto</a></li>
-                        <li><a >Reportes gráficos</a></li>
-                        <li><a>Mapa de clientes</a></li>
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-suitcase"></i> <span>Gestión de Franquicia</span>
-                        <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a >Personalizar</a></li>
-
-                        <li><a >Actualizar Paquete</a></li>
-                        <li><a>Exportar Información</a></li>
-                        <li><a>Dar de Baja</a></li>
+                        <li><a href="{% url "gestion_inventario:crear_recurso" %}">Registrar recursos</a></li>
+                        <li><a href="{% url "gestion_inventario:listar_recursos" %}">Listar recursos</a></li>
+                        <li><a href="{% url "gestion_inventario:listar_recursos" %}">Asignar recursos</a></li>
+                        <li><a href="{% url "gestion_inventario:listar_recursos" %}">Historial recursos</a></li>
                     </ul>
                 </li>
         </ul>
