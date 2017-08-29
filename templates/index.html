@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load user_tags %}
+{% load staticfiles %}
+
+{% block titulo %}
+    {{ block.super }} | Inicio
+{% endblock titulo %}
+
+{% block welcome %}
+    {% if request.tenant.is_public %}
+        <img alt="image" class="img-circle" width="40px" height="40px" src= "{% static 'img/logo_univalle.jpg' %}" />
+        EVAFORM - Evaluación formativa
+    {% elif request.tenant.icono %}
+        <img alt="image" class="img-circle" width="40px" height="40px" src= "{{ request.tenant.icono.url }}" />&nbsp;&nbsp;
+        &nbsp;&nbsp;{{ request.tenant.titulo }}
+    {% endif %}
+{% endblock %}
+
+{% block title_content %}
+    Inicio proyecto Base
+{% endblock %}
+
+
+{% block contenido %}
+    {% if  request.user|has_group:"Estudiantes" %}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary animated swing">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-check "></i>¿Cómo hacer un examen?</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            1. Ir a "Gestión de Exámenes"
+                        </p>
+                        <p>
+                            2. Click en "Resolver Exámen"
+                        </p>
+                        <p>
+                            3. Llenar con el código que el maestro debe darte
+                        </p>
+                        <p>
+                            4. Resolver todas las preguntas
+                        </p>
+                        <p>
+                            5. En la opciones de usuario ubicadas debajo de la foto de perfil podrás encontrar todos tus exámenes
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock contenido %}
+
+{% block js %}
+{% endblock js %}
