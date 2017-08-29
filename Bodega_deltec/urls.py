@@ -17,11 +17,14 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import url, include
 from django.contrib.auth.views import login, logout
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     url(r'^gestion_usuarios/', include('gestion_usuarios.urls', namespace='gestion_usuarios')),
     url(r'^admin/', admin.site.urls),
     url(r'^login$', login, name='login'),
     url(r'^logout$', logout, {'next_page': 'landpage'}, name='logout'),
-]
 
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

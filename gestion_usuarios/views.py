@@ -14,7 +14,7 @@ class RegistroUsuario(CreateView):
     template_name = "gestion_usuarios/usuario_form.html"
     form_class = RegistroUsuarioForm
     success_msg = "Usuario creado exitosamente"
-    success_url = reverse_lazy('usuarios:listar')
+    success_url = reverse_lazy('gestion_usuarios:listar')
 
 class EditarUsuario(UpdateView):
     model = Usuario
@@ -28,5 +28,19 @@ class EditarUsuario(UpdateView):
         messages.success(self.request, self.success_msg)
         return super(EditarUsuario, self).form_valid(form)
 
-class ListaUsuario(ListView):
+class VerUsuario(DetailView):
     model = Usuario
+    template_name = 'gestion_usuarios/ver_usuario.html'
+
+    def get_object(self, queryset=None):
+        obj = Usuario.objects.get(id=self.kwargs['id'])
+        return obj
+
+
+class ListarUsuario(ListView):
+    model = Usuario
+
+    def get_context_data(self, **kwargs):
+        context = super(ListarUsuario, self).get_context_data(**kwargs)
+        context['count'] = self.get_queryset().count()
+        return context
