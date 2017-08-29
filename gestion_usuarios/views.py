@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from django.views.generic.edit import *
 from gestion_usuarios.models import Usuario
+from django.contrib.auth.models import User
 from django.contrib import messages
 
 
@@ -14,7 +15,7 @@ class RegistroUsuario(CreateView):
     template_name = "gestion_usuarios/usuario_form.html"
     form_class = RegistroUsuarioForm
     success_msg = "Usuario creado exitosamente"
-    success_url = reverse_lazy('gestion_usuarios:listar')
+    success_url = reverse_lazy('gestion_usuarios:ver_usuario')
 
 class EditarUsuario(UpdateView):
     model = Usuario
@@ -30,10 +31,10 @@ class EditarUsuario(UpdateView):
 
 class VerUsuario(DetailView):
     model = Usuario
-    template_name = 'gestion_usuarios/ver_usuario.html'
+    template_name = 'gestion_usuarios/usuario_detail.html'
 
     def get_object(self, queryset=None):
-        obj = Usuario.objects.get(id=self.kwargs['id'])
+        obj = User.objects.get(id=self.kwargs['pk'])
         return obj
 
 

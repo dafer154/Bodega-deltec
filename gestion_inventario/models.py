@@ -22,11 +22,3 @@ class Recursos(models.Model):
         return str(self.nombre)
 
 
-class Asignar_recursos(models.Model):
-
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    recursos = models.ManyToManyField(Recursos, blank=True, null=True)
-    date_joined = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return str(self.nombre)

@@ -5,13 +5,13 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from django.views.generic.edit import *
 from gestion_usuarios.models import Usuario
-from .models import Asignar_recursos, Recursos
+from .models import Recursos
 from django.contrib import messages
 
 
 class CrearRecurso(CreateView):
     model = Recursos
-    template_name = "gestion_inventario/CrearRecurso_form.html"
+    template_name = "gestion_inventario/crearRecurso_form.html"
     form_class = CrearRecursoForm
     success_msg = "Recurso registrado exitosamente"
     success_url = reverse_lazy('gestion_inventario:listar-recursos')
@@ -39,20 +39,20 @@ class VerRecurso(DetailView):
         return obj
 
 
-class ListarUsuario(ListView):
-    model = Usuario
+class ListarRecurso(ListView):
+    model = Recursos
 
     def get_context_data(self, **kwargs):
-        context = super(ListarUsuario, self).get_context_data(**kwargs)
+        context = super(ListarRecurso, self).get_context_data(**kwargs)
         context['count'] = self.get_queryset().count()
         return context
 
 
-
-class AsignarRecurso(CreateView):
-    model = Asignar_recursos
-    template_name = "gestion_inventario/asignarRecurso_form.html"
-    form_class = AsignarRecursoForm
-    success_msg = "Recurso asignado exitosamente"
-    success_url = reverse_lazy('usuarios:listar')
-
+#
+# class AsignarRecurso(CreateView):
+#     model = Asignar_recursos
+#     template_name = "gestion_inventario/asignarRecurso_form.html"
+#     form_class = AsignarRecursoForm
+#     success_msg = "Recurso asignado exitosamente"
+#     success_url = reverse_lazy('usuarios:listar')
+#

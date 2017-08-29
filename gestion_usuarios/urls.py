@@ -10,9 +10,8 @@ urlpatterns = [
     url(r'^crear-usuario$', RegistroUsuario.as_view(), name='crear_usuario'),
     url(r'^editar-usuario$', EditarUsuario.as_view(), name='editar_usuario'),
     url(r'^listar-usuario$', ListarUsuario.as_view(), name='listar_usuario'),
-    url(r'^ver-detalle$', VerUsuario.as_view(), name='listar_usuario'),
+    url(r'^ver-detalle$', VerUsuario.as_view(), name='ver_usuario'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
 
 
 

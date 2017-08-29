@@ -1,5 +1,4 @@
 from django.db import models
-
 from django.contrib.auth.models import User
 
 
@@ -17,7 +16,5 @@ class Usuario(User):
     documento_id = models.CharField('Cédula', max_length=11)
     imagen_perfil = models.ImageField(verbose_name="Imagen de perfil", upload_to='imagenes_perfil/', null=True)
 
-
     def __str__(self):
-        return self.tipo_documento
-
+        return self.tipo_documento + " " + User.get_full_name(self)

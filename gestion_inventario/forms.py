@@ -1,5 +1,5 @@
 from django import forms
-from .models import Asignar_recursos, Recursos
+from .models import Recursos
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -13,8 +13,8 @@ class RecursoUpdateForm(forms.ModelForm):
         model = Recursos
         fields = ('categoria', 'nombre', 'codigo', 'marca', 'serie')
 
-
-class AsignarRecursoForm(forms.ModelForm):
-    class Meta:
-        model = Asignar_recursos
-        fields = ('usuario', 'recursos')
+#
+# class AsignarRecursoForm(forms.ModelForm):
+#      class Meta:
+#          model = Asignar_recursos
+#         fields = ('usuario', 'recursos')
