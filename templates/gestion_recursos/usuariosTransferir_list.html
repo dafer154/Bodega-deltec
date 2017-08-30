@@ -1,0 +1,56 @@
+{% extends "base_list.html" %}
+{# Load the tag library #}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block page-title %}Listado de Usuarios para transferir recursos{% endblock %}
+
+{% block cabecera_tabla %}
+    <thead>
+    <tr>
+        <td>#</td>
+        <td>Nombre</td>
+        <td>Apellido</td>
+        <td>Email</td>
+        <td>Direccion</td>
+        <td>Telefono</td>
+    </tr>
+
+    </thead>
+{% endblock cabecera_tabla %}
+{% block cuerpo_tabla %}
+    <tbody>
+    {% if object_list %}
+        {% for usuario in object_list %}
+            <tr>
+                <td>{{ usuario.id }}</td>
+                <td>{{ usuario.first_name }}</td>
+                <td>{{ usuario.last_name }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.direccion }}</td>
+                <td>{{ usuario.telefono }}</td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Transferir</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Transferir</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'gestion_recursos:transferir_recurso' id_url usuario.id %}">Transferir recursos</a></li>
+                        </ul>
+                    </div>
+                </td>
+
+            </tr>
+        {% endfor %}
+
+    {% else %}
+        <h1>No hay registros de Usuarios</h1>
+    {% endif %}
+    </tbody>
+{% endblock cuerpo_tabla %}
+
+{% block new_button %}
+    <a href="{% url "gestion_usuarios:listar_usuario" %}" class="btn btn-success"><i class="fa fa-plus-circle"></i> Atras</a>
+{% endblock %}

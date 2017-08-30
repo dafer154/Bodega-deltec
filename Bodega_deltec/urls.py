@@ -1,7 +1,7 @@
 """Bodega_deltec URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
+    https://docs.djangoproject.com/en/1.10/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -17,11 +17,19 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import url, include
 from django.contrib.auth.views import login, logout
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, TemplateView
+
 
 urlpatterns = [
+    url(r'^$', TemplateView.as_view(template_name="index.html"), name='inicio'),
+    url(r'^inicio$', TemplateView.as_view(template_name="index.html"), name='inicio'),
     url(r'^gestion_usuarios/', include('gestion_usuarios.urls', namespace='gestion_usuarios')),
+    url(r'^gestion_inventario/', include('gestion_inventario.urls', namespace='gestion_inventario')),
+    url(r'^gestion_recursos/', include('gestion_recursos.urls', namespace='gestion_recursos')),
     url(r'^admin/', admin.site.urls),
     url(r'^login$', login, name='login'),
-    url(r'^logout$', logout, {'next_page': 'landpage'}, name='logout'),
-]
+    url(r'^logout$', logout, {'next_page': 'inicio'}, name='logout'),
 
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

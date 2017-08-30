@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from gestion_usuarios.models import Usuario
 
 
 class Recursos(models.Model):
