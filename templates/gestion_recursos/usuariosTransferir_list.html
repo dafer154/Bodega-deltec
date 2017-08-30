@@ -3,8 +3,7 @@
 {% load staticfiles %}
 {% load bootstrap3 %}
 
-{% block page-title %}Listado de Usuarios{% endblock %}
-{% block page-description %}Utilice las opciones para gestionar usuarios{% endblock %}
+{% block page-title %}Listado de Usuarios para transferir recursos{% endblock %}
 
 {% block cabecera_tabla %}
     <thead>
@@ -32,15 +31,13 @@
                 <td>{{ usuario.telefono }}</td>
                 <td>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary">Opciones</button>
+                        <button type="button" class="btn btn-primary">Transferir</button>
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
-                            <span class="sr-only">Opciones de gestión de usuarios</span>
+                            <span class="sr-only">Transferir</span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'gestion_usuarios:editar_usuario' usuario.id %}">Editar</a></li>
-                            <li><a href="{% url 'gestion_recursos:asignar_recurso' usuario.id %}">Asignar recursos</a></li>
-                            <li><a href="{% url 'gestion_recursos:usuario_recurso' usuario.id %}">Transferir recurso</a></li>
+                            <li><a href="{% url 'gestion_recursos:transferir_recurso' id_url usuario.id %}">Transferir recursos</a></li>
                         </ul>
                     </div>
                 </td>
@@ -55,5 +52,5 @@
 {% endblock cuerpo_tabla %}
 
 {% block new_button %}
-    <a href="{% url "gestion_usuarios:crear_usuario" %}" class="btn btn-success"><i class="fa  fa-plus-circle"></i> Crear Usuario</a>
+    <a href="{% url "gestion_usuarios:listar_usuario" %}" class="btn btn-success"><i class="fa fa-plus-circle"></i> Atras</a>
 {% endblock %}

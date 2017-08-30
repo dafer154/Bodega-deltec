@@ -15,3 +15,6 @@ class Asignar_recurso(models.Model):
     usuario = models.ForeignKey(Usuario)
     recursos = models.ForeignKey(Recursos, unique=True)
     date_joined = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.recursos)

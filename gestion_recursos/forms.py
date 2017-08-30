@@ -6,7 +6,18 @@ from django.db.models import Min
 
 
 class AsignarRecursoForm(forms.ModelForm):
-    #pizza = forms.ModelChoiceField(queryset=Pizza.objects.annotate(min_cantidad=Min('ingredientes__cantidad_disponible')).filter(min_cantidad__gte=1))
+    class Meta(object):
+        model = Asignar_recurso
+        fields = ['recursos']
+        exclude = ['usuario']
+
+
+class TransferirRecursoForm(forms.ModelForm):
+    def __init__(self, pk_recibe=None, pk_envia=None, *args, **kwargs):
+
+        super(TransferirRecursoForm, self).__init__(*args, **kwargs)
+        self.fields['recursos']= forms.ModelChoiceField(queryset=Asignar_recurso.objects.filter(usuario=pk_envia))
+
     class Meta(object):
         model = Asignar_recurso
         fields = ['recursos']
