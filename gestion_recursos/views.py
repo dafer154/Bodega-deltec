@@ -120,3 +120,20 @@ class TransferirRecurso(CreateView):
         except Asignar_recurso.DoesNotExist:
             context['asignar_recursos'] = []
         return context
+
+class ConsultarRecurso(ListView):
+    model = Asignar_recurso
+    template_name = "gestion_recursos/consultarRecurso_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        usuarioId = self.kwargs['pk']
+        usuario = Usuario.objects.get(pk=usuarioId)
+        print(usuario)
+        try:
+            context['asignar_recursos'] = Asignar_recurso.objects.all().filter(usuario=usuario)
+            context['usuario'] = usuario
+            print(context['asignar_recursos'])
+        except Asignar_recurso.DoesNotExist:
+            context['asignar_recursos'] = []
+        return context

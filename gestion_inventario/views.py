@@ -10,21 +10,20 @@ from django.contrib import messages
 
 
 class CrearRecurso(CreateView):
+
     model = Recursos
     template_name = "gestion_inventario/crearRecurso_form.html"
     form_class = CrearRecursoForm
-    success_msg = "Recurso registrado exitosamente"
+    success_msg = "Recurso creado exitosamente"
     success_url = reverse_lazy('gestion_inventario:listar-recursos')
-
 
 
 class EditarRecurso(UpdateView):
     model = Recursos
+    template_name = "gestion_inventario/crearRecurso_form.html"
     form_class = RecursoUpdateForm
     success_msg = "Recurso actualizado exitosamente"
-
-    def get_success_url(self):
-        return reverse_lazy('gestion_inventario:ver_recurso', kwargs={'pk': self.object.id})
+    success_url = reverse_lazy('gestion_inventario:listar-recursos')
 
     def form_valid(self, form):
         messages.success(self.request, self.success_msg)
@@ -46,13 +45,3 @@ class ListarRecurso(ListView):
         context = super(ListarRecurso, self).get_context_data(**kwargs)
         context['count'] = self.get_queryset().count()
         return context
-
-
-#
-# class AsignarRecurso(CreateView):
-#     model = Asignar_recursos
-#     template_name = "gestion_inventario/asignarRecurso_form.html"
-#     form_class = AsignarRecursoForm
-#     success_msg = "Recurso asignado exitosamente"
-#     success_url = reverse_lazy('usuarios:listar')
-#

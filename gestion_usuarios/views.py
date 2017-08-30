@@ -21,9 +21,7 @@ class EditarUsuario(UpdateView):
     model = Usuario
     form_class = UsuarioUpdateForm
     success_msg = "Perfil actualizado exitosamente"
-
-    def get_success_url(self):
-        return reverse_lazy('gestion_usuarios:detail', kwargs={'pk': self.object.id})
+    success_url = reverse_lazy('gestion_usuarios:listar_usuario')
 
     def form_valid(self, form):
         messages.success(self.request, self.success_msg)
