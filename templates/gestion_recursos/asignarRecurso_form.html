@@ -1,29 +1,85 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
 {% load staticfiles %}
 {% load bootstrap3 %}
 
-{# Load the tag library #}
-
+{% block page-title %}Asignacion de Recursos{% endblock %}
+{% block page-description %}Asignacion de recursos{% endblock %}
 
 {% block content %}
-
-    <div class="box box-info">
-        <div class="box-header with-border">
-            <h3 class="box-title">Por favor diligencie el formulario</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="box box-info">
+                <form method="post" class="form-horizontal">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Por favor diligencie el formulario</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                        {% csrf_token %}
+                        {% bootstrap_form form layout="horizontal" %}
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-info pull-right">
+                            Asignar recurso
+                            <span class="fa fa-arrow-circle-right"></span>
+                        </button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
         </div>
-        <!-- /.box-header -->
-        <!-- form start -->
-        <form method="post" class="form-horizontal" enctype="multipart/form-data">
-            <div class="box-body">
-                {% csrf_token %}
-                {% bootstrap_form form layout="horizontal" %}
+        <div class="col-md-8">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Recursos asignados</h3>
+                </div>
+
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table no-margin">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Categoria</th>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Marca</th>
+                                <th>Serie</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for asignar_recurso in asignar_recursos %}
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="text-yellow">{{ asignar_recurso.recursos.categoria }}</p>
+                                            </div>
+                                        </div>
+                                    <td>
+                                        <div class="row">
+                                                <p class="text-muted">{{asignar_recurso.recursos.codigo }}</p>
+                                        </div>
+                                    </td>
+                                    <td>{{ asignar_recurso.recursos.nombre }}</td>
+                                    <td>{{ asignar_recurso.recursos.marca }}</td>
+                                    <td>
+                                        {{ asignar_recurso.recursos.marca }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <a href="{% url 'gestion_inventario:listar_recursos'%}" class="btn btn-info pull-right">Finalizar</a>
+                </div>
+                <!-- /.box-footer -->
             </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-                <input type="submit" value="Guardar" class="btn btn-info"/>
-            </div>
-            <!-- /.box-footer -->
-        </form>
+        </div>
     </div>
 {% endblock %}

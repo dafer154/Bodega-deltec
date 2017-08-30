@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^gestion_usuarios/', include('gestion_usuarios.urls', namespace='gestion_usuarios')),
     url(r'^gestion_inventario/', include('gestion_inventario.urls', namespace='gestion_inventario')),
+    url(r'^gestion_recursos/', include('gestion_recursos.urls', namespace='gestion_recursos')),
     url(r'^admin/', admin.site.urls),
     url(r'^login$', login, name='login'),
     url(r'^logout$', logout, {'next_page': 'landpage'}, name='logout'),

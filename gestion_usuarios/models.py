@@ -17,4 +17,4 @@ class Usuario(User):
     imagen_perfil = models.ImageField(verbose_name="Imagen de perfil", upload_to='imagenes_perfil/', null=True)
 
     def __str__(self):
-        return self.tipo_documento + " " + User.get_full_name(self)
+        return User.get_full_name(self)
